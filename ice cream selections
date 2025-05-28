@@ -16,4 +16,15 @@ ice_cream_menu = {
 order = {}
 response = input("Do you want to order ice cream? (yes/no) ").lower()
 
+while response == "yes":
+    print("\nAvailable flavors:")
+    for flavor in ice_cream_menu:
+        print("- " + flavor + " : $" + str(ice_cream_menu[flavor]))
+
+    flavor_choice = input("\nWhich flavor would you like? ").lower()
+
+    if flavor_choice not in ice_cream_menu:
+        print("That flavor doesn't exist. Please try again.")
+        continue
+
 
