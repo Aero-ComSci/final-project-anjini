@@ -1,7 +1,7 @@
 def get_total_price(order, menu):
     total = 0
     for item in order:
-        total += menu [item] * order [item]
+        total += menu[item] * order[item]
     return round(total, 2)
 
 ice_cream_menu = {
@@ -19,12 +19,33 @@ response = input("Do you want to order ice cream? (yes/no) ").lower()
 while response == "yes":
     print("\nAvailable flavors:")
     for flavor in ice_cream_menu:
-        print("- " + flavor + " : $" + str(ice_cream_menu[flavor]))
+        print(f"- {flavor} : ${ice_cream_menu[flavor]}")
 
     flavor_choice = input("\nWhich flavor would you like? ").lower()
 
     if flavor_choice not in ice_cream_menu:
-        print("That flavor doesn't exist. Please try again.")
+        print("That's not a valid flavor. Please try again.")
         continue
 
+    quantity = int(input("How many would you like? "))
+    if quantity < 1:
+        print("You must have at least 1.")
+        continue
 
+    if flavor_choice in order:
+        order[flavor_choice] += quantity
+    else:
+        order[flavor_choice] = quantity
+
+    response = input("Would you like to order another flavor? (yes/no) ").lower()
+
+if order:
+    print("\nOrder Summary:")
+    for item in order:
+        qty = order[item]
+        price = ice_cream_menu[item]
+        line_total = round(qty * price, 2)
+        print(f"- {item} x{qty} = ${line_total}")
+    print(f"Total price: ${get_total_price(order, ice_cream_menu)}")
+else:
+    print("No ice cream was ordered.")
