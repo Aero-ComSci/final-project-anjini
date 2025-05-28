@@ -1,0 +1,19 @@
+def get_total_price(order, menu):
+    total = 0
+    for item in order:
+        total += menu [item] * order [item]
+    return round(total, 2)
+
+ice_cream_menu = {
+    "vanilla": 2.50,
+    "chocolate": 3.00,
+    "strawberry": 2.75,
+    "mint": 3.25,
+    "cookie dough": 3.50,
+    "rocky road": 3.75
+}
+
+order = {}
+response = input("Do you want to order ice cream? (yes/no) ").lower()
+
+
